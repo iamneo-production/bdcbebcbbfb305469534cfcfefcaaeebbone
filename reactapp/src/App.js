@@ -20,7 +20,11 @@ function App() {
    <div className='Greet'>
     <h1><b>Hey!!! Greetings</b></h1>
     <form onSubmit={handleClick} data-testing='form'>
-      <label data-testid='name'>Enter Your </label>
+      <label data-testid='name'>Enter your name:</label>
+      <input type="text" value={inputText} onChange={handleChange}></input>
+      <input type="submit" data-testid="buttonElement">Say Hello</input></button>
+    
+    {displayText && <h2>{displayText}</h2>}
     </form>
    </div>
   );
