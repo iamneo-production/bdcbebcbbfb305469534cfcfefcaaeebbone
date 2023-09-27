@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 import './App.css';
 
 function App() {
@@ -9,24 +10,24 @@ function App() {
     setInputText(e.target.value);
   }
 
-  const handleClick = () => {
-    setDisplayText(inputText);
-  }
-  if(inputText.trim()!==''){
-    setDisplayText('Hello,${inputText}')
+  const handleClick = (e) => {
+    e.preventDefault(); 
+
+    if (inputText.trim() !== '') {
+      setDisplayText(`Hello, ${inputText}`);
+    }
   }
 
   return (
-   <div className='Greet'>
-    <h1><b>Hey!!! Greetings</b></h1>
-    <form onSubmit={handleClick} data-testing='form'>
-      <label data-testid='name'>Enter your name:</label>
-      <input type="text" value={inputText} onChange={handleChange}></input>
-      <input type="submit" data-testid="buttonElement">Say Hello</input></button>
-    
-    {displayText && <h2>{displayText}</h2>}
-    </form>
-   </div>
+    <div className='App'>
+      <h1><b>Hey!!! Greetings</b></h1>
+      <form onSubmit={handleClick} data-testing='form'>
+        <label data-testid='name'>Enter your name:</label>
+        <input type="text" value={inputText} onChange={handleChange}></input>
+        <input type="submit" data-testid="buttonElement" value="Say Hello" />
+      </form>
+      {displayText && <h2>{displayText}</h2>}
+    </div>
   );
 }
 
